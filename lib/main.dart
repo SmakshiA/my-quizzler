@@ -64,39 +64,88 @@ class _QuizPageState extends State<QuizPage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Card(
+      child: Column(children: [
+        Expanded(
+          child: Card(
             color: Colors.blue,
-            child: Text('Who was the fist Programmer'),
+            child: Container(
+              alignment: Alignment.center,
+              child: Text(
+                  'Who was the fist Programmer',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+
+                ),
+              ),
+            ),
             margin: EdgeInsets.all(20.0),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                buildOptionRow(),
-                buildOptionRow(),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Icon(
-                  Icons.check,
+        ),
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                margin: EdgeInsets.all(10.0),
+                child : Column(
+                  children: [
+                    buildOptionRow(),
+                    buildOptionRow(),
+                  ],
                 ),
-                Icon(
-                  Icons.close
-                )
-              ],
-            ),
-          )
-        ],
-      ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Icon(
+                      Icons.check,
+                    ),
+                    Icon(
+                        Icons.close
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ]),
     );
   }
 }
+
+// child: Column(
+// mainAxisAlignment: MainAxisAlignment.spaceAround,
+// children: [
+// Card(
+// color: Colors.blue,
+// child: Text('Who was the fist Programmer'),
+// margin: EdgeInsets.all(20.0),
+// ),
+// Padding(
+// padding: const EdgeInsets.all(8.0),
+// child: Column(
+// children: [
+// buildOptionRow(),
+// buildOptionRow(),
+// ],
+// ),
+// ),
+// Padding(
+// padding: const EdgeInsets.all(8.0),
+// child: Row(
+// crossAxisAlignment: CrossAxisAlignment.end,
+// children: [
+// Icon(
+// Icons.check,
+// ),
+// Icon(
+// Icons.close
+// )
+// ],
+// ),
+// )
+// ],
+// ),
