@@ -22,7 +22,7 @@ void main() {
         body: SafeArea(
           child: QuizPage(),
         ),
-        backgroundColor: Colors.blue,
+        backgroundColor: Colors.blue.shade50,
       ),
     ),
   );
