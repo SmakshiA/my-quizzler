@@ -65,14 +65,36 @@ class _QuizPageState extends State<QuizPage> {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Card(
             color: Colors.blue,
             child: Text('Who was the fist Programmer'),
-            margin: EdgeInsets.all(100.0),
+            margin: EdgeInsets.all(20.0),
           ),
-          buildOptionRow(),
-          buildOptionRow(),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                buildOptionRow(),
+                buildOptionRow(),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Icon(
+                  Icons.check,
+                ),
+                Icon(
+                  Icons.close
+                )
+              ],
+            ),
+          )
         ],
       ),
     );
