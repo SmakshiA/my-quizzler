@@ -22,7 +22,7 @@ void main() {
         body: SafeArea(
           child: QuizPage(),
         ),
-        backgroundColor: Colors.blue.shade50,
+        backgroundColor: Colors.blue,
       ),
     ),
   );
@@ -36,6 +36,7 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+
   //build Option row
   Row buildOptionRow() {
     return Row(
@@ -51,6 +52,7 @@ class _QuizPageState extends State<QuizPage> {
   Expanded buildOption() {
     return Expanded(
       child: Card(
+        color: Colors.pinkAccent.shade100,
         child: IconButton(
           icon: Container(
             child: Text('Option'),
@@ -61,91 +63,69 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 
+  Expanded buildQuestionCard(){
+    return Expanded(
+      flex: 2,
+      child: Card(
+        color: Colors.blue.shade400,
+        child: Container(
+          alignment: Alignment.center,
+          child: Text(
+            'Who was the first Programmer?',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 30.0,
+                color: Colors.white
+            ),
+          ),
+        ),
+        margin: EdgeInsets.all(20.0),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(children: [
-        Expanded(
-          child: Card(
-            color: Colors.blue,
-            child: Container(
-              alignment: Alignment.center,
-              child: Text(
-                  'Who was the fist Programmer',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-
+      child: Column(
+        children: [
+          buildQuestionCard(),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(left: 15.0, right: 15.0),
+                  child: Column(
+                    children: [
+                      buildOptionRow(),
+                      buildOptionRow(),
+                    ],
+                  ),
                 ),
-              ),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Icon(
+                        Icons.check,
+                        color: Colors.green,
+                        size: 35.0,
+                      ),
+                      Icon(
+                        Icons.close,
+                        color: Colors.red,
+                        size: 35.0,
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ),
-            margin: EdgeInsets.all(20.0),
           ),
-        ),
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                margin: EdgeInsets.all(10.0),
-                child : Column(
-                  children: [
-                    buildOptionRow(),
-                    buildOptionRow(),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Icon(
-                      Icons.check,
-                    ),
-                    Icon(
-                        Icons.close
-                    )
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
-      ]),
+        ],
+      ),
     );
   }
 }
-
-// child: Column(
-// mainAxisAlignment: MainAxisAlignment.spaceAround,
-// children: [
-// Card(
-// color: Colors.blue,
-// child: Text('Who was the fist Programmer'),
-// margin: EdgeInsets.all(20.0),
-// ),
-// Padding(
-// padding: const EdgeInsets.all(8.0),
-// child: Column(
-// children: [
-// buildOptionRow(),
-// buildOptionRow(),
-// ],
-// ),
-// ),
-// Padding(
-// padding: const EdgeInsets.all(8.0),
-// child: Row(
-// crossAxisAlignment: CrossAxisAlignment.end,
-// children: [
-// Icon(
-// Icons.check,
-// ),
-// Icon(
-// Icons.close
-// )
-// ],
-// ),
-// )
-// ],
-// ),
