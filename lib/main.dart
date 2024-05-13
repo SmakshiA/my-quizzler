@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:quizzler/Question.dart';
+import 'package:quizzler/QuizBrain.dart';
+
+QuizBrain quizBrain = new QuizBrain();
 
 void main() {
   runApp(
@@ -37,20 +40,6 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  int num = 0;
-
-  List<Question> questions = [
-    Question('Who was the first programmer of the world ?', 'Ada Lovelace',
-        ['Charles Babbage', 'Ada Lovelace', 'Dennis Ritchie', 'Bill Gates']),
-    Question(
-        'How many heading tags are used in HTML ?', '6', ['1', '6', '4', '10']),
-    Question('Which language is used for Flutter Development ?', 'Dart',
-        ['Python', 'Java', 'Kotlin', 'Dart']),
-    Question('Which company developed Flutter?', 'Google',
-        ['Google', 'RedHat', 'Microsoft', 'Meta']),
-    Question('When is national technology day celebrated ?', '11th May',
-        ['1st June', '5th April', '11th May', '20th February'])
-  ];
 
   List<Icon> scoreKeeper = [];
 
@@ -96,22 +85,20 @@ class _QuizPageState extends State<QuizPage> {
           ),
           onPressed: () {
             setState(() {
-              String ans = questions[num].answer;
+              String ans = quizBrain.getQuestion(quizBrain.getQuestNumber()).answer;
               if (ans == op) {
                 scoreKeeper.add(buildCheckIcon());
               } else {
                 scoreKeeper.add(buildCrossIcon());
               }
-              num++;
             });
-            if (num== 5) {
-              num = 0;
+            if (quizBrain.getQuestNumber()== 4) {
               setState(() {
                 _showGameOverDialog();
                 // scoreKeeper.removeRange(0, 5);
               });
             }
-
+            quizBrain.setQuestNumber();
           },
         ),
       ),
@@ -169,7 +156,7 @@ class _QuizPageState extends State<QuizPage> {
     return Center(
       child: Column(
         children: [
-          buildQuestionCard(questions[num].question),
+          buildQuestionCard(quizBrain.getQuestion(quizBrain.getQuestNumber()).question),
           Expanded(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -179,9 +166,9 @@ class _QuizPageState extends State<QuizPage> {
                   child: Column(
                     children: [
                       buildOptionRow(
-                          questions[num].options[0], questions[num].options[1]),
+                          quizBrain.getQuestion(quizBrain.getQuestNumber()).options[0], quizBrain.getQuestion(quizBrain.getQuestNumber()).options[1]),
                       buildOptionRow(
-                          questions[num].options[2], questions[num].options[3]),
+                          quizBrain.getQuestion(quizBrain.getQuestNumber()).options[2], quizBrain.getQuestion(quizBrain.getQuestNumber()).options[3]),
                     ],
                   ),
                 ),
